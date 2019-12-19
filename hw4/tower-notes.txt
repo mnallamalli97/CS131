@@ -1,0 +1,25 @@
+I used N = 4.
+
+For tower: 
+
+tower(4, T, C).
+
+C = counts([4,3,2,1],[1,2,2,2],[4,3,2,1],[1,2,2,2])
+T = [[1,2,3,4],[2,3,4,1],[3,4,1,2],[4,1,2,3]] 
+
+
+For plain_tower:
+
+plain_tower(4, T, C).
+
+C = counts([4,2,2,1],[1,2,2,4],[4,2,2,1],[1,2,2,4])
+T = [[1,2,3,4],[2,1,4,3],[3,4,1,2],[4,3,2,1]]
+
+The ambiguous puzzle was C = counts([4,2,2,1],[1,2,2,4],[4,2,2,1],[1,2,2,4])
+Both the lists for tower and plain_tower were the same T. 
+
+
+Statistics
+
+I called tower(4, T, C). and plain_tower(4, T, C). 5 times. 
+I found the average was that plain_tower is 33x slower than tower. 

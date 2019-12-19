@@ -1,0 +1,18 @@
+> subset, equal_sets, set_union, set_intersection, set_diff:
+
+
+I tried to fully utilize pattern matching for these functions since there is no looping in ocaml. Pattern matching was an intutive solution because it pairs great with recursion. After figuring out the syntax and patterns for the first two functions, I was able to broaden my usage of the langauge by using the List classes and making use of the built-in functions. 
+
+
+
+> computed_fixed_point: 
+
+This function took some time for me to fully implement. I realized I had a working solution for a valid convergance, but if the answer was infinity, my original solution looped infintely and thus did not pass any tests underneath it. You can see in my comments that I tried to use a derivative function to check if the absolute value of the derivative with the variable plugged in is less than 1 or not. If it was, then the solution would converge to f(x) = x. Otherwise, continue with f(f(x)) and f(f(f(x))) and see if they = x. At the end, I ended up using a recursive solution and kept checking if the function converged or not.  
+
+
+> filter_reachable: 
+
+This function was the hardest to implement. 
+I started with trying to isolate the lhs and rhs so that I can check which ones are currently reachable, and what all the reachables were. 
+Once I figured out the reachable symbols, I appended that list to another list, and filtered it out by checking if the new list has symbols that are unreachable
+Finally, I implemented filter_reachable which is now a list that is left only with reachable rules since we removed all the unreachable ones. 

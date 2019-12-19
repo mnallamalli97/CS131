@@ -1,0 +1,36 @@
+I created make_parser first, because it returns more than make_matcher.
+In the make_matcher is was enough to insert desired acceptor into parser
+and just ignore the AST (Abstract Syntax Tree) that it returns together
+with unparsed token list (fragment) that was accepted by the acceptor.
+This makes whole implementation take care of parsing and then make_matcher
+takes just around three lines to code.
+
+The whole solution is based on the approach of recursively trying to parse
+grammar rules in order. That makes a problem when the grammar is left recursive.
+For example grammar:
+
+S -> Sa
+S -> b
+
+is left recursive meaning that my algorithm will loop forever looking for
+deeper and deeper matches of a nonterminal S.
+
+Another problem is when a grammar is ambiguous. There might be many different
+ASTs that could be returned and the code will return the first one it finds.
+
+There are possibly more grammars that are making the code loop forever,
+but I believe that they are all in some terms left recursive. All paths
+within the grammar need to lead into "eating" at least one token from
+the given token list (fragment) within reasonably small amount of applying
+the rules of the grammar. This will result in successive shortening
+of the token list (fragment) which has finite number of elements. This means
+that the algorithm will finish within finite amount of time.
+
+Another problem that may appear with my implementation is the stack size limit.
+I havily use recursion with passing continuation of computations as a recursive
+function to call, so I expect in some cases this may cause consuming
+too much stack memory and in consequence fail to compute. This depends on
+the limit set within the working environment, so adjusting this limit
+should allow more grammars to be able to be handled by my parser.
+
+
